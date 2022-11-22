@@ -1,13 +1,15 @@
 package dao;
 
 import model.User;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface UserDAO {
-
-    List<User>getAllUsers ();
-    User getUserById(long id);
-    void addUser(User user);
-    void removeUser(long id);
-    void updateUser(User user);
+@Transactional
+@Repository
+public interface UserDAO extends JpaRepository<User,Long> {
+    @Query("SELECT u from User u join fetch u.roles where u.username = :username")
+    User findByUsername(@Param("username")String username);
 }

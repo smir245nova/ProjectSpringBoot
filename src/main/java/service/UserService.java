@@ -1,14 +1,15 @@
 package service;
 
 import model.User;
-import javax.validation.Valid;
 import java.util.List;
 
 public interface UserService {
 
-    List<User> getAllUsers ();
-    User getUserById(long id);
-    void addUser(User user);
-    void removeUser(long id);
-    void updateUser(@Valid User user);
+    List<User> findAll ();
+    User getById(long id);
+    void save(User user);
+    void deleteById(long id);
+    User findByUsername(String username);
+    void addDefaultUser();
+    User passwordCoder(User user);
 }
