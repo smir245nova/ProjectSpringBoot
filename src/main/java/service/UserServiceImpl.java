@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
         return userJpaRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void saveUser(User user) {
         userJpaRepository.save(user);
